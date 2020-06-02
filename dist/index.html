@@ -1,0 +1,26 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="icon" href="" />
+  </head>
+  <body>
+    <script type="text/javascript" src="ads.js"></script>
+    <script>
+      const message = {
+        off: "お使いのブラウザのアドブロックは無効になっているようです。",
+        on: "お使いのブラウザのアドブロックは有効になっているようです。",
+      };
+
+      const isWorkingBlocker = () => typeof detect !== "function";
+
+      if (isWorkingBlocker()) {
+        alert(message.on);
+      } else {
+        alert(message.off);
+      }
+    </script>
+  </body>
+</html>
