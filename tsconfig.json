@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "module": "es2015",
+    "target": "es5",
+    "allowJs": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "typeRoots": ["types", "node_modules/@types"]
+  }
+}
