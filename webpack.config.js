@@ -1,46 +1,50 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
+const path = require("path");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
-  entry: './src/index.ts',
-
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+  entry: {
+    ads: "./src/ads.js",
+    app: "./src/index.js",
   },
 
   plugins: [
     new webpack.ProgressPlugin(),
     new Dotenv(),
     new HtmlWebpackPlugin({
-      template: './src/html/index.html',
+      template: "./src/html/index.html",
+      title: "Output Management",
     }),
   ],
+
+  output: {
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist"),
+  },
 
   module: {
     rules: [
       {
         test: /.(ts|tsx)$/,
-        loader: 'ts-loader',
-        include: [path.resolve(__dirname, 'src')],
+        loader: "ts-loader",
+        include: [path.resolve(__dirname, "src")],
         exclude: [/node_modules/],
       },
       {
         test: /\.scss$/,
-        include: [path.resolve(__dirname, 'src')],
+        include: [path.resolve(__dirname, "src")],
         use: [
-          'style-loader',
+          "style-loader",
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               url: false,
               sourceMap: true,
             },
           },
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
               sourceMap: true,
             },
@@ -49,11 +53,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: [path.resolve(__dirname, 'src'), /node_modules/],
+        include: [path.resolve(__dirname, "src"), /node_modules/],
         use: [
-          'style-loader',
+          "style-loader",
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               url: false,
               sourceMap: true,
@@ -63,22 +67,22 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        include: [path.resolve(__dirname, 'src')],
-        loader: 'html-loader',
+        include: [path.resolve(__dirname, "src")],
+        loader: "html-loader",
       },
       {
         test: /\.(woff|woff2|eot|ttf|svg)$/,
-        loader: 'file?name=fonts/[name].[ext]',
+        loader: "file?name=fonts/[name].[ext]",
       },
       {
         test: /\.(png|jpg)$/,
-        include: [path.resolve(__dirname, 'src')],
+        include: [path.resolve(__dirname, "src")],
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
               // limit: 20000,
-              name: '[name].[ext]',
+              name: "[name].[ext]",
             },
           },
         ],
@@ -95,7 +99,7 @@ module.exports = {
         },
       },
 
-      chunks: 'async',
+      chunks: "async",
       minChunks: 1,
       minSize: 30000,
       name: true,
@@ -103,6 +107,6 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: [".tsx", ".ts", ".js"],
   },
-}
+};
